@@ -1,0 +1,37 @@
+.container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.botao {
+    align-items: center;
+    color: #171d1f;
+    display: flex;
+    font-size: 0.78125rem;
+    font-weight: 400;
+    gap: 0.5rem;
+    line-height: 19px;
+}
+
+.botao::before {
+    background-color: #171d1f;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 32px;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 2.5rem;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

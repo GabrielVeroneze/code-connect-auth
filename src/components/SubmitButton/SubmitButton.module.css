@@ -1,0 +1,26 @@
+.botao {
+    align-items: center;
+    background: #81fe88;
+    border-radius: 0.5rem;
+    display: flex;
+    height: 51px;
+    justify-content: center;
+    min-width: 144px;
+    padding: 0.75rem 1rem;
+}
+
+.texto {
+    align-items: center;
+    color: #132e35;
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 600;
+    gap: 0.5rem;
+    line-height: 27px;
+}
+
+.texto::after {
+    content: url('/icons/arrow-forward.svg');
+    height: 24px;
+    width: 18px;
+}

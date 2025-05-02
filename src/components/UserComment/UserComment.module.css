@@ -1,0 +1,39 @@
+.container {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.imagem {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+.nome,
+.texto {
+    font-size: 0.9375rem;
+    line-height: 23px;
+}
+
+.nome {
+    font-weight: 600;
+    min-width: max-content;
+}
+
+.texto {
+    font-weight: 400;
+}
+
+.escuro.nome,
+.escuro.texto {
+    color: #171d1f;
+}
+
+.claro.nome {
+    color: #81fe88;
+}
+
+.claro.texto {
+    color: #e1e1e1;
+}

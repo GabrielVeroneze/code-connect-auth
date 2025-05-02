@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form > :last-child {
+    align-self: flex-end;
+}
+
+.linha {
+    background-color: #888888;
+    height: 88px;
+    width: 1px;
+}
+
+.botao {
+    color: #171d1f;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 23px;
+    width: min-content;
+}

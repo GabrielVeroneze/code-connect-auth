@@ -1,0 +1,26 @@
+.modal {
+    background-color: #3e3e3f;
+    border: none;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    width: 961px;
+}
+
+.modal::backdrop {
+    background-color: #171d1f;
+    opacity: 0.2;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: flex-end;
+    height: 27px;
+    margin-bottom: 1.5rem;
+}
+
+.fechar {
+    color: #e1e1e1;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 27px;
+}
