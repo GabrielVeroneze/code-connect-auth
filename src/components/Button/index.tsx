@@ -1,13 +1,23 @@
+import Link from 'next/link'
 import styles from './Button.module.css'
 
 interface ButtonProps {
     children: React.ReactNode
-    type?: 'button' | 'reset' | 'submit'
+    variant?: 'filled' | 'outlined' | 'outlinedLarge'
+    href?: string
 }
 
-export const Button = ({ children, type }: ButtonProps) => {
+export const Button = ({ children, variant = 'filled', href }: ButtonProps) => {
+    if (href) {
+        return (
+            <Link href={href} className={`${styles.botao} ${styles[variant]}`}>
+                {children}
+            </Link>
+        )
+    }
+
     return (
-        <button className={styles.botao} type={type}>
+        <button className={`${styles.botao} ${styles[variant]}`}>
             {children}
         </button>
     )
