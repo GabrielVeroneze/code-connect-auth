@@ -1,5 +1,6 @@
 .botao {
     border-radius: 0.5rem;
+    display: block;
     font-size: 1.125rem;
     font-weight: 600;
     height: 50px;
