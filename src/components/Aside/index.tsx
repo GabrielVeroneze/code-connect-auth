@@ -1,5 +1,9 @@
 import { Button } from '@/components/Button'
 import { AsideLink } from '@/components/AsideLink'
+import { Feed } from '@/components/Icons/Feed'
+import { Account } from '@/components/Icons/Account'
+import { Info } from '@/components/Icons/Info'
+import { Login } from '@/components/Icons/Login'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Aside.module.css'
@@ -23,22 +27,22 @@ export const Aside = () => {
                         </Button>
                     </li>
                     <li>
-                        <AsideLink icon="/icons/feed.svg" href="/">
+                        <AsideLink icone={<Feed />} href="/">
                             Feed
                         </AsideLink>
                     </li>
                     <li>
-                        <AsideLink icon="/icons/account.svg" href="/profile">
+                        <AsideLink icone={<Account />} href="/profile">
                             Perfil
                         </AsideLink>
                     </li>
                     <li>
-                        <AsideLink icon="/icons/info.svg" href="/about">
+                        <AsideLink icone={<Info />} href="/about">
                             Sobre nós
                         </AsideLink>
                     </li>
                     <li>
-                        <AsideLink icon="/icons/login.svg" href="/login?">
+                        <AsideLink icone={<Login />} href="/login">
                             Login
                         </AsideLink>
                     </li>
