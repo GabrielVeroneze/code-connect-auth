@@ -1,22 +1,28 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from './AsideLink.module.css'
 
 interface AsideLinkProps {
     children: string
-    icon: string
+    icone: React.ReactNode
     href: string
 }
 
-export const AsideLink = ({ children, icon, href }: AsideLinkProps) => {
+export const AsideLink = ({ children, icone, href }: AsideLinkProps) => {
+    const pathname = usePathname()
+    const estaAtivo = pathname === href
+
     return (
-        <Link className={styles.link} href={href}>
-            <Image
-                src={icon}
-                alt={`Ícone de ${children}`}
-                height={32}
-                width={32}
-            />
+        <Link
+            className={`
+                ${styles.link}
+                ${estaAtivo ? styles.ativo : ''}
+            `}
+            href={href}
+        >
+            {icone}
             <p className={styles.texto}>{children}</p>
         </Link>
     )
