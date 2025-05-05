@@ -1,3 +1,5 @@
+import { getServerSession } from 'next-auth'
+import { options } from '@/app/api/auth/[...nextauth]/options'
 import { Button } from '@/components/Button'
 import { AsideLink } from '@/components/AsideLink'
 import { Feed } from '@/components/Icons/Feed'
@@ -8,7 +10,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Aside.module.css'
 
-export const Aside = () => {
+export const Aside = async () => {
+    const session = await getServerSession(options)
+
     return (
         <aside className={styles.aside}>
             <nav className={styles.nav}>
@@ -42,9 +46,15 @@ export const Aside = () => {
                         </AsideLink>
                     </li>
                     <li>
-                        <AsideLink icone={<Login />} href="/login">
-                            Login
-                        </AsideLink>
+                        {session ? (
+                            <AsideLink icone={<Login />} href="/api/auth/signout">
+                                Logout
+                            </AsideLink>
+                        ) : (
+                            <AsideLink icone={<Login />} href="/api/auth/signin">
+                                Login
+                            </AsideLink>
+                        )}
                     </li>
                 </ul>
             </nav>
