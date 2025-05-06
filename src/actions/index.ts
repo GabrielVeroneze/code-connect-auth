@@ -1,6 +1,8 @@
 'use server'
 
+import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
+import { options } from '@/app/api/auth/[...nextauth]/options'
 import { Post } from '@/types/Post'
 import { Comment } from '@/types/Comment'
 import db from 'prisma/db'
@@ -22,13 +24,9 @@ export async function incrementThumbsUp(post: Post) {
 }
 
 export async function postComment(post: Post, formData: FormData) {
-    const author = await db.user.findFirst({
-        where: {
-            username: 'anabeatriz_dev',
-        },
-    })
+    const session = await getServerSession(options)
 
-    if (!author) {
+    if (!session?.user) {
         throw new Error('Autor não encontrado.')
     }
 
@@ -37,7 +35,7 @@ export async function postComment(post: Post, formData: FormData) {
     await db.comment.create({
         data: {
             text: text,
-            authorId: author.id,
+            authorId: session.user.id,
             postId: post.id,
         },
     })
@@ -47,11 +45,7 @@ export async function postComment(post: Post, formData: FormData) {
 }
 
 export async function postReply(parent: Comment, formData: FormData) {
-    const author = await db.user.findFirst({
-        where: {
-            username: 'anabeatriz_dev',
-        },
-    })
+    const session = await getServerSession(options)
 
     const post = await db.post.findFirst({
         where: {
@@ -59,7 +53,7 @@ export async function postReply(parent: Comment, formData: FormData) {
         },
     })
 
-    if (!author || !post) {
+    if (!session?.user || !post) {
         throw new Error('Autor ou post não encontrado.')
     }
 
@@ -68,7 +62,7 @@ export async function postReply(parent: Comment, formData: FormData) {
     await db.comment.create({
         data: {
             text: text,
-            authorId: author.id,
+            authorId: session.user.id,
             postId: post.id,
             parentId: parent.parentId ?? parent.id,
         },
