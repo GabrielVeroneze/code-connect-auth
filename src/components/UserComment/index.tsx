@@ -8,11 +8,13 @@ interface UserCommentProps {
 }
 
 export const UserComment = ({ comment, tema = 'escuro' }: UserCommentProps) => {
+    const imgSrc = comment.author?.avatar ?? comment.author?.image
+
     return (
         <div className={styles.container}>
             <Image
                 className={styles.imagem}
-                src={comment.author?.avatar ?? '/images/default-avatar.png'}
+                src={imgSrc ?? '/images/default-avatar.png'}
                 alt={`Avatar do(a) ${comment.author?.name}`}
                 height={32}
                 width={32}
