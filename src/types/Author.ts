@@ -3,4 +3,6 @@ export interface Author {
     name: string
     username: string
     avatar: string
+    email: string
+    image?: string
 }
