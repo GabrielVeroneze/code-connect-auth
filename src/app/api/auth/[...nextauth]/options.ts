@@ -18,7 +18,7 @@ export const options: AuthOptions = {
     callbacks: {
         async session({ session, user }) {
             if (session?.user) {
-                session.user.id = user.id
+                session.user.id = Number(user.id)
             }
 
             return session
