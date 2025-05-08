@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { getAllPosts } from '@/services/postService'
 import { SearchForm } from '@/components/SearchForm'
 import { CardPost } from '@/components/CardPost'
+import { getAllPosts } from '@/services/postService'
+import Link from 'next/link'
 import styles from './page.module.css'
 
 interface HomeProps {
