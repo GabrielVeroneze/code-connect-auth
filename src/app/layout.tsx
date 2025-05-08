@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Prompt } from 'next/font/google'
-import { Aside } from '@/components/Aside'
 import '@/styles/reset.css'
 import '@/styles/globals.css'
 
@@ -15,15 +14,14 @@ export const metadata: Metadata = {
     description: 'Uma rede social para devs!',
 }
 
-const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+interface RootLayoutProps {
+    children: React.ReactNode
+}
+
+const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html lang="pt-br" className={prompt.className}>
-            <body>
-                <div className="app-container">
-                    <Aside />
-                    {children}
-                </div>
-            </body>
+            <body>{children}</body>
         </html>
     )
 }
