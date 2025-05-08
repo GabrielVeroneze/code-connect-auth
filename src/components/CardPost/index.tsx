@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/Avatar'
+import { Author } from '@/components/Author'
 import { ModalComment } from '@/components/ModalComment'
 import { incrementThumbsUp, postComment } from '@/actions'
 import { Post } from '@/types/Post'
@@ -47,10 +47,7 @@ export const CardPost = ({ post, tamanho = 'compacto' }: CardPostProps) => {
                         <p className={styles.contador}>{post.comments.length}</p>
                     </div>
                 </div>
-                <Avatar
-                    imageSrc={post.author.avatar}
-                    name={post.author.username}
-                />
+                <Author author={post.author} />
             </footer>
         </article>
     )
