@@ -1,5 +1,5 @@
+import { Avatar } from '@/components/Avatar'
 import { Comment } from '@/types/Comment'
-import Image from 'next/image'
 import styles from './UserComment.module.css'
 
 interface UserCommentProps {
@@ -8,17 +8,9 @@ interface UserCommentProps {
 }
 
 export const UserComment = ({ comment, tema = 'escuro' }: UserCommentProps) => {
-    const imgSrc = comment.author?.avatar ?? comment.author?.image
-
     return (
         <div className={styles.container}>
-            <Image
-                className={styles.imagem}
-                src={imgSrc ?? '/images/default-avatar.png'}
-                alt={`Avatar do(a) ${comment.author?.name}`}
-                height={32}
-                width={32}
-            />
+            <Avatar author={comment?.author} />
             <strong className={`${styles.nome} ${styles[tema]}`}>
                 @{comment.author?.name}
             </strong>
