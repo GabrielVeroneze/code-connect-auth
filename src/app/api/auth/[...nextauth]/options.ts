@@ -1,6 +1,7 @@
 import { AuthOptions } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import GitHubProvider from 'next-auth/providers/github'
+import Credentials from 'next-auth/providers/credentials'
 import db from 'prisma/db'
 
 if (!process.env.GITHUB_ID || !process.env.GITHUB_SECRET) {
@@ -13,6 +14,20 @@ export const options: AuthOptions = {
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
+        }),
+        Credentials({
+            credentials: {
+                email: {
+                    label: 'E-mail',
+                    type: 'email',
+                    placeholder: 'Digite seu e-mail!',
+                },
+                password: {
+                    label: 'Senha',
+                    type: 'password',
+                    placeholder: 'Digite sua senha!',
+                },
+            },
         }),
     ],
     callbacks: {
