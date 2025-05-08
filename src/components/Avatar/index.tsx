@@ -1,22 +1,21 @@
+import { Author } from '@/types/Author'
 import Image from 'next/image'
 import styles from './Avatar.module.css'
 
 interface AvatarProps {
-    imageSrc: string
-    name: string
+    author?: Author
 }
 
-export const Avatar = ({ imageSrc, name }: AvatarProps) => {
+export const Avatar = ({ author }: AvatarProps) => {
+    const imgSrc = author?.avatar ?? author?.image
+
     return (
-        <div className={styles.container}>
-            <Image
-                className={styles.imagem}
-                src={imageSrc}
-                alt={`Avatar de ${name}`}
-                width={32}
-                height={32}
-            />
-            <span className={styles.nome}>@{name}</span>
-        </div>
+        <Image
+            className={styles.imagem}
+            src={imgSrc ?? '/images/default-avatar.png'}
+            alt={`Avatar do(a) ${author?.name}`}
+            height={32}
+            width={32}
+        />
     )
 }
