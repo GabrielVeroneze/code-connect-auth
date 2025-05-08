@@ -42,14 +42,3 @@ a {
     color: inherit;
     text-decoration: none;
 }
-
-.app-container {
-    display: grid;
-    gap: 1.625rem;
-    grid-template-areas: 'menu feed';
-    grid-template-columns: 177px 996px;
-    grid-template-rows: 1fr;
-    min-height: 100vh;
-    margin: 3.5rem auto;
-    max-width: 1200px;
-}
