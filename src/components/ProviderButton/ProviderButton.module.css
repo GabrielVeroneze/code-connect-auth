@@ -1,0 +1,14 @@
+.botao {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.nome {
+    color: #e1e1e1;
+    font-size: 0.78125rem;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+}
