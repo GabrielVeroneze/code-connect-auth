@@ -1,3 +1,5 @@
+'use client'
+
 import { useFormStatus } from 'react-dom'
 import { Spinner } from '@/components/Spinner'
 import styles from './SubmitButton.module.css'
