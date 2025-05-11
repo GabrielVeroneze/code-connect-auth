@@ -1,10 +1,11 @@
+import { AuthHeader } from '@/components/AuthHeader'
 import { InputField } from '@/components/InputField'
 import { CheckboxField } from '@/components/CheckboxField'
 import { SubmitButton } from '@/components/SubmitButton'
-import { TextDivider } from '@/components/TextDivider'
+import { AuthProviders } from '@/components/AuthProviders'
 import { ProviderButton } from '@/components/ProviderButton'
+import { AuthFooter } from '@/components/AuthFooter'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from './signon.module.css'
 
 const Signon = () => {
@@ -19,10 +20,10 @@ const Signon = () => {
                 priority
             />
             <section className={styles.conteudo}>
-                <header className={styles.cabecalho}>
-                    <h1 className={styles.titulo}>Cadastro</h1>
-                    <h2 className={styles.subtitulo}>Olá! Preencha seus dados.</h2>
-                </header>
+                <AuthHeader
+                    titulo="Cadastro"
+                    subtitulo="Olá! Preencha seus dados."
+                />
                 <form className={styles.formulario}>
                     <div className={styles.campos}>
                         <InputField
@@ -50,16 +51,15 @@ const Signon = () => {
                     <CheckboxField label="Lembrar-me" required />
                     <SubmitButton>Cadastrar</SubmitButton>
                 </form>
-                <div className={styles.provedores}>
-                    <TextDivider>ou entre com outras contas</TextDivider>
+                <AuthProviders>
                     <ProviderButton imagem="icons/github.svg" nome="Github" />
-                </div>
-                <footer className={styles.rodape}>
-                    Já tem conta?
-                    <Link className={styles.link} href="/signin">
-                        Faça seu login!
-                    </Link>
-                </footer>
+                </AuthProviders>
+                <AuthFooter
+                    variante="login"
+                    texto="Já tem conta?"
+                    textoLink="Faça seu login!"
+                    link="/signin"
+                />
             </section>
         </>
     )
