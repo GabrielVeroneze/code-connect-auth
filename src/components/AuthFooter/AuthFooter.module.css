@@ -1,0 +1,33 @@
+.rodape {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.texto, .link {
+    color: #e1e1e1;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.link {
+    align-items: center;
+    color: #81fe88;
+    display: inline-flex;
+    gap: 0.75rem;
+}
+
+.cadastro::after {
+    content: url('/icons/cadastro.svg');
+    height: 36px;
+    width: 24px;
+}
+
+.login::after {
+    content: url('/icons/login.svg');
+    height: 36px;
+    width: 24px;
+}
