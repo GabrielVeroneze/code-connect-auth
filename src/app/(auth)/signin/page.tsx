@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { AuthHeader } from '@/components/AuthHeader'
 import { InputField } from '@/components/InputField'
 import { CheckboxField } from '@/components/CheckboxField'
@@ -10,6 +13,14 @@ import Link from 'next/link'
 import styles from './signin.module.css'
 
 const Signin = () => {
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+
+    const loginAttempt = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        console.log('login?')
+    }
+
     return (
         <>
             <Image
@@ -25,13 +36,15 @@ const Signin = () => {
                     titulo="Login"
                     subtitulo="Boas-vindas! Faça seu login."
                 />
-                <form className={styles.formulario}>
+                <form className={styles.formulario} onSubmit={loginAttempt}>
                     <div className={styles.campos}>
                         <InputField
                             type="email"
                             label="Email ou usuário"
                             placeholder="Digite seu email ou nome de usuário"
                             name="email"
+                            value={email}
+                            onChange={event => setEmail(event.target.value)}
                             required
                         />
                         <InputField
@@ -39,6 +52,8 @@ const Signin = () => {
                             label="Senha"
                             placeholder="Digite sua senha"
                             name="password"
+                            value={password}
+                            onChange={event => setPassword(event.target.value)}
                             required
                         />
                     </div>
