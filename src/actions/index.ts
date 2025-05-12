@@ -2,9 +2,11 @@
 
 import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { Post } from '@/types/Post'
 import { Comment } from '@/types/Comment'
+import bcrypt from 'bcryptjs'
 import db from 'prisma/db'
 
 export async function incrementThumbsUp(post: Post) {
@@ -69,4 +71,27 @@ export async function postReply(parent: Comment, formData: FormData) {
     })
 
     revalidatePath(`/${post.slug}`)
+}
+
+export async function createUser(formData: FormData) {
+    try {
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+
+        const hashedPassword = bcrypt.hashSync(password, 10)
+
+        await db.user.create({
+            data: {
+                name: name,
+                email: email,
+                password: hashedPassword,
+            },
+        })
+    } catch (error) {
+        console.log('Falha ao criar usuário:', error)
+        throw new Error('Falha ao criar usuário.')
+    }
+
+    redirect('/signin')
 }
