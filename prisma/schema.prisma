@@ -21,6 +21,7 @@ model User {
     avatar        String?
     email         String?   @unique
     emailVerified DateTime?
+    password      String?
     image         String?
     Post          Post[]
     comments      Comment[]
