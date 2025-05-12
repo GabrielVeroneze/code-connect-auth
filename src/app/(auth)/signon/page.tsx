@@ -5,6 +5,7 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { AuthProviders } from '@/components/AuthProviders'
 import { ProviderButton } from '@/components/ProviderButton'
 import { AuthFooter } from '@/components/AuthFooter'
+import { createUser } from '@/actions'
 import Image from 'next/image'
 import styles from './signon.module.css'
 
@@ -24,7 +25,7 @@ const Signon = () => {
                     titulo="Cadastro"
                     subtitulo="Olá! Preencha seus dados."
                 />
-                <form className={styles.formulario}>
+                <form className={styles.formulario} action={createUser}>
                     <div className={styles.campos}>
                         <InputField
                             type="text"
