@@ -15,7 +15,7 @@ export const ProfileImageUploader = ({ user }: ProfileImageUploaderProps) => {
     const [newAvatar, setNewAvatar] = useState<File | null>(null)
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files[0]
+        const file = event.target.files?.[0]
 
         if (file) {
             setNewAvatar(file)
@@ -23,7 +23,7 @@ export const ProfileImageUploader = ({ user }: ProfileImageUploaderProps) => {
             const reader = new FileReader()
 
             reader.onloadend = () => {
-                setImgSrc(reader.result)
+                setImgSrc(reader.result as string)
             }
 
             reader.readAsDataURL(file)
