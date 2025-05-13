@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import db from 'prisma/db'
+import db from '../../../../../../prisma/db'
 
 interface RouteParams {
     params: Promise<{ id: string }>

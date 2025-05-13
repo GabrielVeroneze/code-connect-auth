@@ -6,8 +6,8 @@ import { redirect } from 'next/navigation'
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { Post } from '@/types/Post'
 import { Comment } from '@/types/Comment'
+import db from '../../prisma/db'
 import bcrypt from 'bcryptjs'
-import db from 'prisma/db'
 
 export async function incrementThumbsUp(post: Post) {
     await db.post.update({
