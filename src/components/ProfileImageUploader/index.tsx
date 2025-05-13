@@ -11,9 +11,33 @@ interface ProfileImageUploaderProps {
 }
 
 export const ProfileImageUploader = ({ user }: ProfileImageUploaderProps) => {
-    const [imgSrc, setImgSrc] = useState<string>(
-        user.avatar ?? user.image ?? '/images/default-avatar.png'
-    )
+    const [imgSrc, setImgSrc] = useState<string>(user.avatar ?? user.image ?? '/images/default-avatar.png')
+    const [newAvatar, setNewAvatar] = useState<File | null>(null)
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files[0]
+
+        if (file) {
+            setNewAvatar(file)
+
+            const reader = new FileReader()
+
+            reader.onloadend = () => {
+                setImgSrc(reader.result)
+            }
+
+            reader.readAsDataURL(file)
+        }
+    }
+
+    const uploadAvatar = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        fetch('/api/profile', {
+            method: 'POST',
+            body: newAvatar,
+        })
+    }
 
     return (
         <>
@@ -23,8 +47,8 @@ export const ProfileImageUploader = ({ user }: ProfileImageUploaderProps) => {
                     <Image src={imgSrc} alt="" height={254} width={254} />
                 </li>
             </ul>
-            <form>
-                <input type="file" />
+            <form onSubmit={uploadAvatar}>
+                <input type="file" onChange={handleFileChange} required />
                 <Button>Upload</Button>
             </form>
         </>
