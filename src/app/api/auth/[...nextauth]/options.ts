@@ -2,6 +2,7 @@ import { AuthOptions } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import GitHubProvider from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
+import bcrypt from 'bcryptjs'
 import db from 'prisma/db'
 
 if (!process.env.GITHUB_ID || !process.env.GITHUB_SECRET) {
@@ -10,6 +11,10 @@ if (!process.env.GITHUB_ID || !process.env.GITHUB_SECRET) {
 
 export const options: AuthOptions = {
     adapter: PrismaAdapter(db),
+    session: {
+        strategy: 'jwt',
+        maxAge: 3000,
+    },
     providers: [
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
@@ -28,12 +33,43 @@ export const options: AuthOptions = {
                     placeholder: 'Digite sua senha!',
                 },
             },
+            async authorize(credentials) {
+                try {
+                    const foundUser = await db.user.findFirst({
+                        where: {
+                            email: credentials?.email,
+                        },
+                    })
+
+                    if (foundUser && credentials && foundUser.password) {
+                        const passMatch = bcrypt.compareSync(
+                            credentials.password,
+                            foundUser.password
+                        )
+
+                        if (passMatch) {
+                            const { password, ...safeUser } = foundUser
+
+                            const user = {
+                                ...safeUser,
+                                id: safeUser.id.toString(),
+                            }
+
+                            return user
+                        }
+                    }
+                } catch (error) {
+                    console.log('Erro ao autorizar um usuário:', error)
+                }
+
+                return null
+            },
         }),
     ],
     callbacks: {
-        async session({ session, user }) {
-            if (session?.user) {
-                session.user.id = Number(user.id)
+        async session({ session, token }) {
+            if (session?.user && token?.sub) {
+                session.user.id = parseInt(token.sub)
             }
 
             return session
