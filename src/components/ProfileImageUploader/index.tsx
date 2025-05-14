@@ -2,16 +2,16 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/Button'
-import { Author } from '@/types/Author'
 import Image from 'next/image'
 import styles from './ProfileImageUploader.module.css'
 
 interface ProfileImageUploaderProps {
-    user: Author
+    avatar: string | null
+    image: string | null
 }
 
-export const ProfileImageUploader = ({ user }: ProfileImageUploaderProps) => {
-    const [imgSrc, setImgSrc] = useState<string>(user.avatar ?? user.image ?? '/images/default-avatar.png')
+export const ProfileImageUploader = ({ avatar, image }: ProfileImageUploaderProps) => {
+    const [imgSrc, setImgSrc] = useState<string>(avatar ?? image ?? '/images/default-avatar.png')
     const [newAvatar, setNewAvatar] = useState<File | null>(null)
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
