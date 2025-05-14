@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { put } from '@vercel/blob'
 import { options } from '@/app/api/auth/[...nextauth]/options'
+import db from '../../../../prisma/db'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     const session = await getServerSession(options)
@@ -20,6 +21,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     const blob = await put(filename, body, {
         access: 'public',
+        addRandomSuffix: true,
+    })
+
+    await db.user.update({
+        where: {
+            email: session.user.email,
+        },
+        data: {
+            avatar: blob.url,
+        },
     })
 
     return NextResponse.json(blob)
