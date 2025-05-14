@@ -18,10 +18,14 @@ const Profile = async () => {
         },
     })
 
+    if (!user) {
+        return null
+    }
+
     return (
         <section>
             <h1 style={{ color: 'white' }}>Profile</h1>
-            <ProfileImageUploader user={user} />
+            <ProfileImageUploader avatar={user.avatar} image={user.image} />
         </section>
     )
 }
