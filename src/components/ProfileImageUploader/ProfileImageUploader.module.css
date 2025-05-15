@@ -1,0 +1,18 @@
+.form {
+    align-items: flex-end;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.label {
+    border: 1px solid #3e3e3f;
+    border-radius: 50%;
+    display: block;
+    height: 256px;
+    overflow: hidden;
+    width: 256px;
+}
+
+.input {
+    display: none;
+}
