@@ -40,17 +40,22 @@ export const ProfileImageUploader = ({ avatar, image }: ProfileImageUploaderProp
     }
 
     return (
-        <>
-            <ul>
-                <li>{user.name}</li>
-                <li>
-                    <Image src={imgSrc} alt="" height={254} width={254} />
-                </li>
-            </ul>
-            <form onSubmit={uploadAvatar}>
-                <input type="file" onChange={handleFileChange} required />
-                <Button>Upload</Button>
-            </form>
-        </>
+        <form className={styles.form} onSubmit={uploadAvatar}>
+            <label className={styles.label}>
+                <Image
+                    src={imgSrc}
+                    alt="Imagem de perfil do usuário"
+                    height={254}
+                    width={254}
+                />
+                <input
+                    className={styles.input}
+                    type="file"
+                    onChange={handleFileChange}
+                    required
+                />
+            </label>
+            <Button>Upload</Button>
+        </form>
     )
 }
