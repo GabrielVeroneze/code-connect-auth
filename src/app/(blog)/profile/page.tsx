@@ -23,10 +23,22 @@ const Profile = async () => {
     }
 
     return (
-        <section>
-            <h1 style={{ color: 'white' }}>Profile</h1>
+        <main className={styles.container}>
+            <header className={styles.cabecalho}>
+                <h1 className={styles.titulo}>{user.name}</h1>
+                <h2 className={styles.subtitulo}>@{user.username}</h2>
+            </header>
             <ProfileImageUploader avatar={user.avatar} image={user.image} />
-        </section>
+            <section className={styles.secao}>
+                <p className={styles.sobre}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <button className={styles.botao}>Editar</button>
+            </section>
+        </main>
     )
 }
 
