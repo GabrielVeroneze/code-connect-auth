@@ -66,8 +66,16 @@ const Signin = () => {
                     <SubmitButton>Login</SubmitButton>
                 </form>
                 <AuthProviders>
-                    <ProviderButton imagem="/icons/github.svg" nome="Github" />
-                    <ProviderButton imagem="/icons/google.svg" nome="Gmail" />
+                    <ProviderButton
+                        imagem="/icons/github.svg"
+                        nome="Github"
+                        provedor="github"
+                    />
+                    <ProviderButton
+                        imagem="/icons/google.svg"
+                        nome="Gmail"
+                        provedor="google"
+                    />
                 </AuthProviders>
                 <AuthFooter
                     variante="cadastro"
