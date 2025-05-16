@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { signIn } from 'next-auth/react'
 import { AuthHeader } from '@/components/AuthHeader'
 import { InputField } from '@/components/InputField'
 import { CheckboxField } from '@/components/CheckboxField'
@@ -18,7 +19,12 @@ const Signin = () => {
 
     const loginAttempt = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log('login?')
+
+        signIn('credentials', {
+            callbackUrl: '/',
+            email: email,
+            password: password,
+        })
     }
 
     return (
