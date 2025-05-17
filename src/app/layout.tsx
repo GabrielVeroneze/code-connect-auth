@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Prompt } from 'next/font/google'
+import { AuthProvider } from '@/components/AuthProvider'
 import '@/styles/reset.css'
 import '@/styles/globals.css'
 
@@ -21,7 +22,9 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html lang="pt-br" className={prompt.className}>
-            <body>{children}</body>
+            <body>
+                <AuthProvider>{children}</AuthProvider>
+            </body>
         </html>
     )
 }
