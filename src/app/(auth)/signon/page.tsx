@@ -53,7 +53,11 @@ const Signon = () => {
                     <SubmitButton>Cadastrar</SubmitButton>
                 </form>
                 <AuthProviders>
-                    <ProviderButton imagem="icons/github.svg" nome="Github" />
+                    <ProviderButton
+                        imagem="icons/github.svg"
+                        nome="Github"
+                        provedor="github"
+                    />
                 </AuthProviders>
                 <AuthFooter
                     variante="login"
