@@ -40,7 +40,7 @@ export async function getAllPosts(page: number, searchTerm: string): Promise<Pag
             },
         })
 
-        return { data: posts, prev, next }
+        return { data: posts as Post[], prev, next }
     } catch (error) {
         logger.error('Falha ao obter posts', { error })
 
@@ -81,7 +81,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 
         post.markdown = contentHtml
 
-        return post
+        return post as Post
     } catch (error) {
         logger.error('Falha ao obter o post com o slug: ', {
             slug,
